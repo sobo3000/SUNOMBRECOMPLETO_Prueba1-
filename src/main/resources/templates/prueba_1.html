@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="template/template :: content">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Encabezado</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Este es el encabezado</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+</body>
+</html>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #F9F9F9;
+        }
+
+        .table-container {
+            background-color: #E9F7EF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #FFA500;
+            color: #FFFFFF;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #F0F0F0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #CCCCCC;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #FFA500;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FFC04D;
+        }
+    </style>
+</head>
+<body>
+    <!-- Aquí puedes agregar el contenido común de la aplicación, como el encabezado -->
+    <h1>Prueba1 - Aplicación de Estudiantes</h1>
+    <hr/>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Grado</th>
+                    <th>Estatura</th>
+                    <th>Peso</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                //en teoria deberia agregar el id y mostrar los datos registrados // 
+                <tr th:each="estudiantes : ${estudiantes}">
+                    <td th:text="${estudiantes.id}"></td>
+                    <td><input type="text" th:value="${estudiantes.nombre}" /></td>
+                    <td><input type="text" th:value="${estudiantes.apellido}" /></td>
+                    <td><input type="text" th:value="${estudiantes.grado}" /></td>
+                    <td><input type="text" th:value="${estudiantes.estatura}" /></td>
+                    <td><input type="text" th:value="${estudiantes.peso}" /></td>
+                    <td><input type="text" th:value="${estudiantes.edad}" /></td>
+                    <td>
+                       //botones que hace accion
+                        <button onclick="editarEstudiantes(${estudiantes.id})">Editar</button>
+                        <button onclick="deleteEstudiantes(${estudiantes.id})">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="agregarEstudiantes()">Agregar Estudiantes</button>
+    </div>
+</body>
+</html>
